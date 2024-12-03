@@ -1,7 +1,7 @@
 import axios from "axios";
 const instance = axios.create({
   // baseURL: "http://localhost:5000/api/v1",
-  baseURL: "https://atlas.batstate-u.edu.ph:3069/api/v1",
+  baseURL: "http://atlas.batstate-u.edu.ph:3069/api/v1",
   withCredentials: true,
 });
 
@@ -15,7 +15,7 @@ instance.interceptors.response.use(
 
       try {
         const response = await axios.get(
-          `https://atlas.batstate-u.edu.ph:3069/api/v1/user/refresh-token`,
+          `http://atlas.batstate-u.edu.ph:3069/api/v1/user/refresh-token`,
           // `http://localhost:5000/api/v1/user/refresh-token`,
           {
             withCredentials: true,
