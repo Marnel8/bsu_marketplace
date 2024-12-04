@@ -1,7 +1,7 @@
 import axios from "axios";
 const instance = axios.create({
   // baseURL: "http://localhost:5000/api/v1",
-  baseURL: "https://batstateu-marketplace.parallaxed.ph/api/v1",
+  baseURL: "https://batstateu-marketplace.parallaxed.ph:3069/api/v1",
   withCredentials: true,
 });
 
