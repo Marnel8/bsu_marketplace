@@ -1,7 +1,7 @@
 import axios from "axios";
 const instance = axios.create({
   // baseURL: "http://localhost:5000/api/v1",
-  baseURL: "https://paluan-server-main.vercel.app/api/v1",
+  baseURL: "https://marketplace-server-psi.vercel.app/api/v1",
   withCredentials: true,
 });
 
@@ -15,7 +15,7 @@ instance.interceptors.response.use(
 
       try {
         const response = await axios.get(
-          `https://paluan-server-main.vercel.app/api/v1/user/refresh-token`,
+          `https://marketplace-server-psi.vercel.app/api/v1/user/refresh-token`,
           // `http://localhost:5000/api/v1/user/refresh-token`,
           {
             withCredentials: true,
