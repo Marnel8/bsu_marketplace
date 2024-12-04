@@ -10,11 +10,11 @@ const nextConfig: NextConfig = {
         port: "5000",
         pathname: "/uploads/**",
       },
-      // {
-      //   protocol: "https",
-      //   hostname: "your-production-domain.com",
-      //   pathname: "/uploads/**",
-      // },
+      {
+        protocol: "http",
+        hostname: "atlas.batstate-u.edu.ph",
+        pathname: "/uploads/**",
+      },
     ],
   },
 };

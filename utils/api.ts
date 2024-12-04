@@ -1,8 +1,11 @@
 import axios from "axios";
 const instance = axios.create({
   // baseURL: "http://localhost:5000/api/v1",
-  baseURL: "https://batstateu-marketplace.parallaxed.ph/api/v1",
-  withCredentials: true
+  baseURL: "http://atlas.batstate-u.edu.ph:3070/api/v1",
+  httpsAgent: {
+    rejectUnauthorized: false,
+  },
+  withCredentials: true,
 });
 
 instance.interceptors.response.use(
@@ -15,7 +18,7 @@ instance.interceptors.response.use(
 
       try {
         const response = await axios.get(
-          `https://batstateu-marketplace.parallaxed.ph/api/v1/user/refresh-token`,
+          `http://atlas.batstate-u.edu.ph:3070/api/v1/user/refresh-token`,
           // `http://localhost:5000/api/v1/user/refresh-token`,
           {
             withCredentials: true,
