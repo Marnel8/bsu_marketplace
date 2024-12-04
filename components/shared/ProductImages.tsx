@@ -14,7 +14,7 @@ const ProductImages = ({ images }: ProductImagesProps) => {
     <div className="flex-1 animate-fade-in pt-20 md:pt-0">
       <AspectRatio
         ratio={14 / 9}
-        className="mb-4 transition-all duration-300 ease-in-out hover:scale-[1.02]"
+        className="mb-4 bg-muted transition-all duration-300 ease-in-out hover:scale-[1.02]"
       >
         <div className="absolute inset-0 bg-gray-100 rounded-lg overflow-hidden">
           <Image

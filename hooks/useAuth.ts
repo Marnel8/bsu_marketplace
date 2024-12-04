@@ -120,3 +120,63 @@ export const useActivateUser = () => {
     mutationFn: activateUser,
   });
 };
+
+const updateUser = async ({
+  id,
+  firstName,
+  lastName,
+  contactNumber,
+  age,
+  email,
+}: {
+  id: string;
+  firstName: string;
+  lastName: string;
+  contactNumber: string;
+  age: string;
+  email: string;
+}) => {
+  const response = await api.put(`/user/${id}`, {
+    firstName,
+    lastName,
+    contactNumber,
+    age,
+    email,
+  });
+  return response.data;
+};
+
+export const useUpdateUser = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: updateUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+    },
+  });
+};
+
+const changePassword = async ({
+  oldPassword,
+  newPassword,
+}: {
+  oldPassword: string;
+  newPassword: string;
+}) => {
+  const response = await api.post("/user/change-password", {
+    oldPassword,
+    newPassword,
+  });
+  return response.data;
+};
+
+export const useChangePassword = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: changePassword,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+    },
+  });
+};
+

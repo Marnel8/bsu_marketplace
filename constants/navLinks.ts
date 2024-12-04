@@ -8,3 +8,10 @@ export const navLinks = [
     href: "/about",
   },
 ];
+
+export const mobileNavLinks = [
+  {
+    label: "Products",
+    href: "/products",
+  },
+];
