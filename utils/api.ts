@@ -2,9 +2,6 @@ import axios from "axios";
 const instance = axios.create({
   // baseURL: "http://localhost:5000/api/v1",
   baseURL: "https://paluan-server-main.vercel.app/api/v1",
-  httpsAgent: {
-    rejectUnauthorized: false,
-  },
   withCredentials: true,
 });
 
