@@ -18,7 +18,7 @@ const ProductImages = ({ images }: ProductImagesProps) => {
       >
         <div className="absolute inset-0 bg-gray-100 rounded-lg overflow-hidden">
           <Image
-            src={selectedImage}
+            src={selectedImage || "/images/placeholder.png"}
             alt="Product image"
             fill
             sizes="(max-width: 768px) 80vw, 40vw"
@@ -42,7 +42,7 @@ const ProductImages = ({ images }: ProductImagesProps) => {
             onClick={() => setSelectedImage(image)}
           >
             <Image
-              src={image}
+              src={image || "/images/placeholder.png"}
               alt={`Product thumbnail ${index + 1}`}
               fill
               sizes="(max-width: 768px) 20vw, 10vw"

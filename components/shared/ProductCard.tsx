@@ -14,7 +14,7 @@ const ProductCard = ({ item }: { item: any }) => {
       <Link href={`/${item.id}`} className="h-full">
         <AspectRatio ratio={5 / 5} className="bg-muted rounded-lg">
           <Image
-            src={getImageUrl(item.thumbnail)}
+            src={getImageUrl(item.thumbnail) || "/images/placeholder.png"}
             alt={item.name || "Product image"}
             fill
             className="object-cover p-4 hover:scale-105 transition-transform duration-300 rounded-lg"

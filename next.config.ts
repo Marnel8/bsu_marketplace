@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "http",
         hostname: "atlas.batstate-u.edu.ph",
+        port: "3070",
         pathname: "/uploads/**",
       },
     ],
