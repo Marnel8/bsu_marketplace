@@ -50,6 +50,7 @@ const SignUpForm = () => {
     isPending: isCreateUserPending,
     isSuccess: isCreateUserSuccess,
     isError: isCreateUserError,
+    error: createUserError,
   } = useCreateUser();
 
   const router = useRouter();
@@ -58,6 +59,8 @@ const SignUpForm = () => {
     mutateAsync: verifyOtp,
     isSuccess: isVerifyOtpSuccess,
     isPending: isVerifyOtpPending,
+    isError: isVerifyOtpError,
+    error: verifyOtpError,
   } = useActivateUser();
 
   const queryClient = useQueryClient();
@@ -90,7 +93,12 @@ const SignUpForm = () => {
     if (isCreateUserSuccess) {
       setIsOtpDialogOpen(true);
     }
-  }, [isCreateUserSuccess]);
+    if (isCreateUserError) {
+      setErrorMessage(
+        createUserError?.message || "Something went wrong during sign up"
+      );
+    }
+  }, [isCreateUserSuccess, isCreateUserError]);
 
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
     try {
@@ -98,9 +106,13 @@ const SignUpForm = () => {
       await createUser(data);
       reset();
     } catch (error: any) {
-      const message = error.response?.data?.message || 'Something went wrong during sign up';
-      setErrorMessage(message);
-      console.error('Signup failed:', error);
+      const message =
+        error.response?.data?.message || "Something went wrong during sign up";
+      toast({
+        title: "Error",
+        description: errorMessage,
+        variant: "destructive",
+      });
     }
   };
 
@@ -129,7 +141,14 @@ const SignUpForm = () => {
     if (isVerifyOtpSuccess) {
       router.push("/auth");
     }
-  }, [isVerifyOtpSuccess]);
+    if (isVerifyOtpError) {
+      toast({
+        title: "Error",
+        description: verifyOtpError?.message || "Invalid OTP. Please try again",
+        variant: "destructive",
+      });
+    }
+  }, [isVerifyOtpSuccess, isVerifyOtpError, verifyOtpError]);
 
   return (
     <>
@@ -148,12 +167,6 @@ const SignUpForm = () => {
             </div>
           </div>
         </CardHeader>
-
-        {errorMessage && (
-          <div className="px-6 py-2">
-            <p className="text-red-500 text-sm">{errorMessage}</p>
-          </div>
-        )}
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <CardContent className="space-y-2">
@@ -224,12 +237,15 @@ const SignUpForm = () => {
           </CardFooter>
         </form>
       </Card>
-      <Dialog 
-        open={isOtpDialogOpen} 
+      <Dialog
+        open={isOtpDialogOpen}
         onOpenChange={setIsOtpDialogOpen}
         modal={true}
       >
-        <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => e.preventDefault()}>
+        <DialogContent
+          className="sm:max-w-md"
+          onPointerDownOutside={(e) => e.preventDefault()}
+        >
           <DialogHeader>
             <DialogTitle className="text-center">Enter OTP</DialogTitle>
             <DialogDescription className="text-center">
@@ -263,8 +279,8 @@ const SignUpForm = () => {
               >
                 {isVerifyOtpPending ? "Verifying OTP..." : "Verify OTP"}
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 onClick={() => setIsOtpDialogOpen(false)}
                 className="w-full"
               >

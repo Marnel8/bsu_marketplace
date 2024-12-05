@@ -31,7 +31,7 @@ const SignInForm = () => {
     isPending: isLoginPending,
     isSuccess: isLoginSuccess,
     isError: isLoginError,
-    error,
+    error: loginError,
   } = useSignIn();
 
   const {
@@ -66,10 +66,10 @@ const SignInForm = () => {
       });
       router.push("/");
     } else if (isLoginError) {
-      console.log("Login failed:", error);
-      setError("root", { message: error.message });
+      console.log("Login failed:", loginError);
+      setError("root", { message: loginError.message });
     }
-  }, [isLoginError, isLoginSuccess, error]);
+  }, [isLoginError, isLoginSuccess, loginError]);
 
   return (
     <Card>

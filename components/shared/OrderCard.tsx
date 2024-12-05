@@ -24,6 +24,8 @@ const OrderCard = ({ order }: { order: any }) => {
     mutateAsync: cancelOrder,
     isPending: isCancelOrderPending,
     isSuccess: isCancelOrderSuccess,
+    isError: isCancelOrderError,
+    error: cancelOrderError,
   } = useUpdateOrder();
 
   const handleCancelOrder = async () => {
@@ -35,6 +37,13 @@ const OrderCard = ({ order }: { order: any }) => {
       toast({
         title: "Order cancelled",
         description: "Your order has been cancelled",
+      });
+    }
+    if (isCancelOrderError) {
+      toast({
+        title: "Error",
+        description: cancelOrderError?.message || "Something went wrong",
+        variant: "destructive",
       });
     }
   }, [isCancelOrderSuccess]);
@@ -86,7 +95,12 @@ const OrderCard = ({ order }: { order: any }) => {
             <Button
               variant="destructive"
               className="rounded-full"
-              disabled={isCancelOrderPending || order.status === "approved"}
+              disabled={
+                isCancelOrderPending ||
+                order.status === "approved" ||
+                order.status === "cancelled" ||
+                order.status === "success"
+              }
             >
               Cancel Order
             </Button>

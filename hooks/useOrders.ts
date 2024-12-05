@@ -2,8 +2,12 @@ import api from "../utils/api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const fetchOrdersByUser = async () => {
-  const response = await api.get("/order/get-user-orders");
-  return response.data;
+  try {
+    const response = await api.get("/order/get-user-orders");
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || 'Failed to fetch orders');
+  }
 };
 
 export const useOrders = () => {
@@ -20,8 +24,12 @@ const createOrder = async ({
   itemId: string;
   quantity: number;
 }) => {
-  const response = await api.post("/order", { itemId, quantity });
-  return response.data;
+  try {
+    const response = await api.post("/order", { itemId, quantity });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || 'Failed to create order');
+  }
 };
 
 export const useCreateOrder = () => {
@@ -64,15 +72,19 @@ const createOrderAsGuest = async ({
   userEmail: string;
   contactNumber: string;
 }) => {
-  const response = await api.post("/order/create-order-as-guest", {
-    itemId,
-    quantity,
-    firstName,
-    lastName,
-    userEmail,
-    contactNumber,
-  });
-  return response.data;
+  try {
+    const response = await api.post("/order/create-order-as-guest", {
+      itemId,
+      quantity,
+      firstName,
+      lastName,
+      userEmail,
+      contactNumber,
+    });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || 'Failed to create guest order');
+  }
 };
 
 export const useCreateOrderAsGuest = () => {
@@ -86,8 +98,12 @@ export const useCreateOrderAsGuest = () => {
 };
 
 const updateOrder = async ({ orderId, status }: { orderId: string; status: string }) => {
-  const response = await api.put(`/order/${orderId}`, { status });
-  return response.data;
+  try {
+    const response = await api.put(`/order/${orderId}`, { status });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || 'Failed to update order');
+  }
 };
 
 export const useUpdateOrder = () => {

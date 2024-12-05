@@ -16,16 +16,28 @@ import { useCreateOrder, useCreateOrderAsGuest } from "@/hooks/useOrders";
 const CartSheet = () => {
   const { data: user } = useUser();
   const { data: cartItems } = useCartItems();
-  const { mutateAsync: removeFromCart, isSuccess: isRemovedFromCart } =
-    useRemoveFromCart();
+  const {
+    mutateAsync: removeFromCart,
+    isSuccess: isRemovedFromCart,
+    isError: isRemoveFromCartError,
+    error: removeFromCartError,
+  } = useRemoveFromCart();
 
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<any>(null);
 
-  const { mutateAsync: createOrder, isPending: isCreatingOrder } =
-    useCreateOrder();
-  const { mutateAsync: createOrderAsGuest, isPending: isCreatingOrderAsGuest } =
-    useCreateOrderAsGuest();
+  const {
+    mutateAsync: createOrder,
+    isPending: isCreatingOrder,
+    isError: isCreateOrderError,
+    error: createOrderError,
+  } = useCreateOrder();
+  const {
+    mutateAsync: createOrderAsGuest,
+    isPending: isCreatingOrderAsGuest,
+    isError: isCreateOrderAsGuestError,
+    error: createOrderAsGuestError,
+  } = useCreateOrderAsGuest();
 
   useEffect(() => {
     if (isRemovedFromCart) {
@@ -34,7 +46,14 @@ const CartSheet = () => {
         description: "You can now view your cart in the sidebar",
       });
     }
-  }, [isRemovedFromCart]);
+    if (isRemoveFromCartError) {
+      toast({
+        title: "Error",
+        description: removeFromCartError?.message || "Please try again",
+        variant: "destructive",
+      });
+    }
+  }, [isRemovedFromCart, isRemoveFromCartError, removeFromCartError]);
 
   const handleOrderNow = (item: any) => {
     setSelectedItem(item);
@@ -65,10 +84,11 @@ const CartSheet = () => {
           ? "Check your orders page"
           : "Check your email for verification",
       });
-    } catch (error) {
+    } catch (error: any) {
       toast({
         title: "Error creating order",
-        description: "Please try again",
+        description:
+          error.response?.data?.message || error.message || "Please try again",
         variant: "destructive",
       });
     }

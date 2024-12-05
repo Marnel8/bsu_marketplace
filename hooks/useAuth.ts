@@ -79,15 +79,25 @@ const createUser = async ({
   contactNumber: string;
   age: string;
 }) => {
-  const response = await api.post("/user/create-user", {
-    email,
-    password,
-    firstName,
-    lastName,
-    contactNumber,
-    age,
-  });
-  return response.data;
+  try {
+    const response = await api.post("/user/create-user", {
+      email,
+      password,
+      firstName,
+      lastName,
+      contactNumber,
+      age,
+    });
+    return response.data;
+  } catch (error: any) {
+    if (error.response) {
+      throw new Error(error.response.data.message || "Failed to create user");
+    } else if (error.request) {
+      throw new Error("No response from server");
+    } else {
+      throw new Error("Error creating user: " + error.message);
+    }
+  }
 };
 
 export const useCreateUser = () => {
@@ -107,11 +117,21 @@ const activateUser = async ({
   activation_token: string;
   activation_code: string;
 }) => {
-  const response = await api.post("/user/activate-user", {
-    activation_token,
-    activation_code,
-  });
-  return response.data;
+  try {
+    const response = await api.post("/user/activate-user", {
+      activation_token,
+      activation_code,
+    });
+    return response.data;
+  } catch (error: any) {
+    if (error.response) {
+      throw new Error(error.response.data.message || "Failed to activate user");
+    } else if (error.request) {
+      throw new Error("No response from server");
+    } else {
+      throw new Error("Error activating user: " + error.message);
+    }
+  }
 };
 
 export const useActivateUser = () => {
@@ -179,4 +199,3 @@ export const useChangePassword = () => {
     },
   });
 };
-

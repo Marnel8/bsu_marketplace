@@ -60,7 +60,7 @@ const Account = () => {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">
-            {user?.user.points || 0} points
+            {user?.user.points || 0} point/s
           </div>
         </CardContent>
       </Card>

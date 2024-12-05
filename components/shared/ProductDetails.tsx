@@ -36,17 +36,23 @@ const ProductDetails = ({ product }: { product: any }) => {
     mutateAsync: createOrder,
     isPending: isCreatingOrder,
     isSuccess: isOrderCreated,
+    isError: isCreatingOrderError,
+    error: creatingOrderError,
   } = useCreateOrder();
 
   const {
     mutateAsync: createOrderAsGuest,
     isPending: isCreatingOrderAsGuest,
+    isError: isCreatingOrderAsGuestError,
+    error: creatingOrderAsGuestError,
     isSuccess: isOrderCreatedAsGuest,
   } = useCreateOrderAsGuest();
 
   const {
     mutateAsync: confirmOrder,
     isPending: isConfirmingOrder,
+    isError: isConfirmingOrderError,
+    error: confirmingOrderError,
     isSuccess: isOrderConfirmed,
   } = useConfirmOrder();
 
@@ -54,11 +60,15 @@ const ProductDetails = ({ product }: { product: any }) => {
     mutateAsync: addToCart,
     isPending: isAddingToCart,
     isSuccess: isAddedToCart,
+    isError: isAddingToCartError,
+    error: addingToCartError,
   } = useAddToCart();
 
   const {
     mutateAsync: updateOrder,
     isPending: isUpdatingOrder,
+    isError: isUpdatingOrderError,
+    error: updatingOrderError,
   } = useUpdateOrder();
 
   const increment = () => {
@@ -105,7 +115,7 @@ const ProductDetails = ({ product }: { product: any }) => {
 
   const handleCancelOrder = async () => {
     try {
-      console.log(orderId)
+      console.log(orderId);
       await updateOrder({ orderId, status: "cancelled" });
       setIsVerificationModalOpen(false);
       toast({
@@ -130,13 +140,31 @@ const ProductDetails = ({ product }: { product: any }) => {
         description: "Please check your email for the verification code",
       });
     }
+    if (isCreatingOrderError) {
+      toast({
+        title: "Error",
+        description: creatingOrderError?.message || "Something went wrong",
+        variant: "destructive",
+      });
+    }
   }, [isOrderCreated, user]);
+
+  const handleAddToCart = async () => {
+    await addToCart({ itemId: product.id, quantity: count });
+  };
 
   useEffect(() => {
     if (isAddedToCart) {
       toast({
         title: "Item added to cart",
         description: "You can now view your cart in the sidebar",
+      });
+    }
+    if (isAddingToCartError) {
+      toast({
+        title: "Error",
+        description: addingToCartError?.message || "Something went wrong",
+        variant: "destructive",
       });
     }
   }, [isAddingToCart]);
@@ -147,6 +175,13 @@ const ProductDetails = ({ product }: { product: any }) => {
       toast({
         title: "Order confirmed",
         description: "please wait for the order to be processed",
+      });
+    }
+    if (isConfirmingOrderError) {
+      toast({
+        title: "Error",
+        description: confirmingOrderError?.message || "Something went wrong",
+        variant: "destructive",
       });
     }
   }, [isOrderConfirmed]);
@@ -223,10 +258,10 @@ const ProductDetails = ({ product }: { product: any }) => {
             </div>
             <Button
               className="flex-1 bg-teal-500 hover:bg-teal-600"
-              disabled={!user || product.quantity === 0}
-              onClick={async () =>
-                await addToCart({ itemId: product.id, quantity: count })
+              disabled={
+                !user || product.quantity < count || isAddingToCart
               }
+              onClick={handleAddToCart}
             >
               Add to cart
             </Button>
@@ -234,7 +269,7 @@ const ProductDetails = ({ product }: { product: any }) => {
           <Button
             className="w-full bg-primary-400 hover:bg-primary/80"
             onClick={handleOrderNow}
-            disabled={product.quantity === 0}
+            disabled={count > product.quantity || isAddingToCart}
           >
             Order now
           </Button>
@@ -400,7 +435,7 @@ const ProductDetails = ({ product }: { product: any }) => {
                   onClick={handleCancelOrder}
                   disabled={isUpdatingOrder}
                 >
-                  Cancel Order  
+                  Cancel Order
                 </Button>
               </div>
             </div>

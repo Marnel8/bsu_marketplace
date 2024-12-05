@@ -9,13 +9,7 @@ import { HiMiniShoppingBag } from "react-icons/hi2";
 import { useUser } from "@/hooks/useAuth";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import UserAvatar from "./Avatar";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../ui/sheet";
+
 import CartSheet from "./CartSheet";
 
 const NavBar = () => {
@@ -61,7 +55,7 @@ const NavBar = () => {
           <Input type="text" placeholder="Search products" />
         </div>
         <div className="flex gap-4 items-center">
-          <CartSheet /> 
+          <CartSheet />
           {!isUserPending && user ? (
             <UserAvatar user={user} />
           ) : (
