@@ -84,6 +84,7 @@ const SignUpForm = () => {
 
   const [isOtpDialogOpen, setIsOtpDialogOpen] = React.useState(false);
   const [otpValue, setOtpValue] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
   useEffect(() => {
     if (isCreateUserSuccess) {
@@ -93,9 +94,12 @@ const SignUpForm = () => {
 
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
     try {
+      setErrorMessage(null);
       await createUser(data);
       reset();
-    } catch (error) {
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Something went wrong during sign up';
+      setErrorMessage(message);
       console.error('Signup failed:', error);
     }
   };
@@ -144,6 +148,12 @@ const SignUpForm = () => {
             </div>
           </div>
         </CardHeader>
+
+        {errorMessage && (
+          <div className="px-6 py-2">
+            <p className="text-red-500 text-sm">{errorMessage}</p>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <CardContent className="space-y-2">
@@ -214,8 +224,12 @@ const SignUpForm = () => {
           </CardFooter>
         </form>
       </Card>
-      <Dialog open={isOtpDialogOpen} onOpenChange={setIsOtpDialogOpen}>
-        <DialogContent className="sm:max-w-md">
+      <Dialog 
+        open={isOtpDialogOpen} 
+        onOpenChange={setIsOtpDialogOpen}
+        modal={true}
+      >
+        <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => e.preventDefault()}>
           <DialogHeader>
             <DialogTitle className="text-center">Enter OTP</DialogTitle>
             <DialogDescription className="text-center">
@@ -241,13 +255,22 @@ const SignUpForm = () => {
                 </InputOTPGroup>
               </InputOTPGroup>
             </InputOTP>
-            <Button
-              onClick={handleVerifyOtp}
-              disabled={otpValue.length !== 4}
-              className="w-full"
-            >
-              {isVerifyOtpPending ? "Verifying OTP..." : "Verify OTP"}
-            </Button>
+            <div className="flex w-full gap-2">
+              <Button
+                onClick={handleVerifyOtp}
+                disabled={otpValue.length !== 4}
+                className="w-full"
+              >
+                {isVerifyOtpPending ? "Verifying OTP..." : "Verify OTP"}
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => setIsOtpDialogOpen(false)}
+                className="w-full"
+              >
+                Cancel
+              </Button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
