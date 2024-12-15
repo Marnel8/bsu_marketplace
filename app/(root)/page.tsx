@@ -1,6 +1,7 @@
 import Banner from "@/components/shared/Banner";
+import CTA from "@/components/shared/CTA";
+import Footer from "@/components/shared/Footer";
 import ProductList from "@/components/shared/ProductList";
-import WhyChooseUs from "@/components/shared/WhyChooseUs";
 import React from "react";
 
 const RootPage = () => {
@@ -8,11 +9,10 @@ const RootPage = () => {
     <div>
       <Banner />
       <div className="page-wrapper space-y-6" id="products">
-        <h1 className="page-title">Our Products</h1>
-        <div className="">
-          <ProductList />
-        </div>
+        <ProductList />
       </div>
+      <CTA />
+      <Footer />
     </div>
   );
 };

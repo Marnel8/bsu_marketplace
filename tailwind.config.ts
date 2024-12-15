@@ -14,7 +14,7 @@ export default {
         foreground: "var(--foreground)",
         primary: {
           DEFAULT: "#AE211E",
-          "400": "rgb(248 113 113)"
+          "400": "#E31837"
         },
       },
       borderRadius: {

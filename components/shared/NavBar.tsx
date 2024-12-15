@@ -60,7 +60,7 @@ const NavBar = () => {
             <UserAvatar user={user} />
           ) : (
             <Button variant="outline">
-              <Link href="/auth">Sign in</Link>
+              <a href="/auth">Sign in</a>
             </Button>
           )}
         </div>

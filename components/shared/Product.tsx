@@ -17,7 +17,7 @@ const Product = ({ productId }: { productId: string }) => {
   ];
 
   return (
-    <div className="page-wrapper px-4 md:px-20 pt-4 relative z-0">
+    <div className="page-wrapper px-4 md:px-20 pt-4 relative z-0 ">
       {product && (
         <div className="flex flex-col md:flex-row gap-6 md:gap-10 max-w-7xl mx-auto">
           <Suspense fallback={<Skeleton />}>

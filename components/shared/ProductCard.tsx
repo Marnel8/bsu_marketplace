@@ -1,60 +1,59 @@
 import Image from "next/image";
 import React from "react";
-import { Card, CardContent, CardFooter } from "../ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 import { Button } from "../ui/button";
-import { FaBagShopping } from "react-icons/fa6";
-import Link from "next/link";
 import { Badge } from "../ui/badge";
-import { AspectRatio } from "../ui/aspect-ratio";
 import { getImageUrl } from "@/utils/imageUtils";
+import { ArrowRight } from "lucide-react";
+import { get } from "http";
+import { useRouter } from "next/navigation";
 
 const ProductCard = ({ item }: { item: any }) => {
+  const router = useRouter();
   return (
-    <Card className="w-[300px] rounded-lg overflow-hidden">
-      <Link href={`/${item.id}`} className="h-full">
-        <AspectRatio ratio={5 / 5} className="bg-muted rounded-lg">
+    <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <CardHeader className="p-0">
+        <div className="relative w-full pt-[100%]">
+          {" "}
+          {/* Creates a 1:1 aspect ratio container */}
           <Image
-            src={getImageUrl(item.thumbnail) || "/images/placeholder.png"}
-            alt={item.name || "Product image"}
+            src={ item.thumbnail ? getImageUrl(item.thumbnail) : "/images/placeholder.png"}
+            alt={item.name}
             fill
-            className="object-cover p-4 hover:scale-105 transition-transform duration-300 rounded-lg"
+            className="object-cover absolute top-0 left-0"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority={false}
-            quality={75}
           />
-        </AspectRatio>
-        <CardContent className="p-4">
-          <div className="flex flex-col gap-2">
-            <div className="flex items-start justify-between gap-4">
-              <div className="space-y-1.5">
-                <h2 className="font-medium text-lg leading-tight">
-                  {item.name}
-                </h2>
-                <div className="flex items-center gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className={`w-4 h-4 fill-current ${
-                        i < (item.rating || 0) ? "text-yellow-400" : "text-gray-300"
-                      }`}
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-              <div className="flex flex-col items-end gap-1.5">
-                <Badge variant="secondary" className="text-xs capitalize">
-                  {item.category}
-                </Badge>
-                <p className="font-bold text-lg">₱{item.price}.00</p>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Link>
+          <Badge  className="absolute capitalize top-2 right-2 bg-[#1a2b4b]">
+            {item.category}
+          </Badge>
+        </div>
+      </CardHeader>
+      <CardContent className="p-4">
+        <CardTitle className="text-lg mb-2 text-[#1a2b4b]">
+          {item.name}
+        </CardTitle>
+        <p className="text-sm text-gray-600 mb-2 line-clamp-2 h-10">
+          {item.description}
+        </p>
+        <p className="text-lg font-semibold text-[#E31837]">
+          ₱{item.price.toFixed(2)}
+        </p>
+      </CardContent>
+      <CardFooter className="p-4 pt-0">
+        <Button
+          className="w-full bg-[#E31837] hover:bg-[#E31837]/90 text-white hover:text-white"
+          variant="ghost"
+          onClick={() => router.push(`/${item.id}`)}
+        >
+          View Details <ArrowRight className="ml-2 h-4 w-4" />
+        </Button>
+      </CardFooter>
     </Card>
   );
 };

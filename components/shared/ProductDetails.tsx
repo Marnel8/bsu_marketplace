@@ -224,7 +224,17 @@ const ProductDetails = ({ product }: { product: any }) => {
           </Badge>
         </div>
 
-        <p className="text-gray-600">{product.description}</p>
+        <div className="text-gray-600">
+          {product.description.includes(";") ? (
+            <ul className="list-disc pl-4 space-y-1">
+              {product.description.split(";").map((point: string, index: number) => (
+                <li key={index}>{point.trim()}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>{product.description}</p>
+          )}
+        </div>
 
         <div
           className="flex flex-col gap-3 max-w-sm animate-fade-in-up"
@@ -258,9 +268,7 @@ const ProductDetails = ({ product }: { product: any }) => {
             </div>
             <Button
               className="flex-1 bg-teal-500 hover:bg-teal-600"
-              disabled={
-                !user || product.quantity < count || isAddingToCart
-              }
+              disabled={!user || product.quantity < count || isAddingToCart}
               onClick={handleAddToCart}
             >
               Add to cart
