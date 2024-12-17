@@ -333,7 +333,6 @@ const ProductDetails = ({ product }: { product: any }) => {
                           id="firstName"
                           type="text"
                           placeholder="John"
-                          value={firstName}
                           onChange={(e) => setFirstName(e.target.value)}
                           className="h-11 px-4 border-gray-200"
                         />
@@ -349,7 +348,6 @@ const ProductDetails = ({ product }: { product: any }) => {
                           id="lastName"
                           type="text"
                           placeholder="Doe"
-                          value={lastName}
                           onChange={(e) => setLastName(e.target.value)}
                           className="h-11 px-4 border-gray-200"
                         />
@@ -363,7 +361,6 @@ const ProductDetails = ({ product }: { product: any }) => {
                         id="email"
                         type="email"
                         placeholder="you@example.com"
-                        value={guestEmail}
                         onChange={(e) => setGuestEmail(e.target.value)}
                         className="h-11 px-4 border-gray-200 "
                       />
@@ -376,7 +373,6 @@ const ProductDetails = ({ product }: { product: any }) => {
                         id="phone"
                         type="tel"
                         placeholder="+63 (955) 000-0000"
-                        value={guestPhone}
                         onChange={(e) => setGuestPhone(e.target.value)}
                         className="h-11 px-4 border-gray-200 "
                       />

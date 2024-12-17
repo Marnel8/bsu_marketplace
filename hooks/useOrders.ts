@@ -6,7 +6,7 @@ const fetchOrdersByUser = async () => {
     const response = await api.get("/order/get-user-orders");
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || 'Failed to fetch orders');
+    throw new Error(error.response?.data?.message || "Failed to fetch orders");
   }
 };
 
@@ -28,7 +28,7 @@ const createOrder = async ({
     const response = await api.post("/order", { itemId, quantity });
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || 'Failed to create order');
+    throw new Error(error.response?.data?.message || "Failed to create order");
   }
 };
 
@@ -83,7 +83,9 @@ const createOrderAsGuest = async ({
     });
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || 'Failed to create guest order');
+    throw new Error(
+      error.response?.data?.message || "Failed to create guest order"
+    );
   }
 };
 
@@ -97,12 +99,18 @@ export const useCreateOrderAsGuest = () => {
   });
 };
 
-const updateOrder = async ({ orderId, status }: { orderId: string; status: string }) => {
+const updateOrder = async ({
+  orderId,
+  status,
+}: {
+  orderId: string;
+  status: string;
+}) => {
   try {
     const response = await api.put(`/order/${orderId}`, { status });
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || 'Failed to update order');
+    throw new Error(error.response?.data?.message || "Failed to update order");
   }
 };
 
@@ -115,4 +123,3 @@ export const useUpdateOrder = () => {
     },
   });
 };
-    

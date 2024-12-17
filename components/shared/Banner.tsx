@@ -1,7 +1,16 @@
+"use client";
 import React from "react";
 import { Button } from "../ui/button";
 import { Store } from "lucide-react";
 import { ShoppingBag } from "lucide-react";
+import { VendorRegistrationDialog } from "../vendor/VendorDialog";
+
+const scrollToProducts = () => {
+  const productsSection = document.getElementById("products");
+  if (productsSection) {
+    productsSection.scrollIntoView({ behavior: "smooth" });
+  }
+};
 
 const Banner = () => {
   return (
@@ -19,27 +28,31 @@ const Banner = () => {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg sm:text-xl text-gray-600">
-            Your one-stop shop for textbooks, supplies, electronics, and more customized crafts within the
-            Batangas State University community.
+            Your one-stop shop for textbooks, supplies, electronics, and more
+            customized crafts within the Batangas State University community.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
               className="bg-[#E31837] hover:bg-[#E31837]/90 text-white font-semibold px-8"
+              onClick={scrollToProducts}
             >
               <ShoppingBag className="mr-2 h-5 w-5" />
               Start Shopping
             </Button>
-
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-[#E31837] text-[#E31837] hover:bg-[#E31837]/5"
-            >
-              <Store className="mr-2 h-5 w-5" />
-              Start Selling
-            </Button>
+            <VendorRegistrationDialog
+              trigger={
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-[#E31837] text-[#E31837] hover:bg-[#E31837]/5"
+                >
+                  <Store className="mr-2 h-5 w-5" />
+                  Start Selling
+                </Button>
+              }
+            />
           </div>
         </div>
       </div>
