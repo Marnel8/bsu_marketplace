@@ -18,7 +18,7 @@ instance.interceptors.response.use(
           {
             withCredentials: true,
           }
-        );
+        );  
 
         if (response.status === 200) {
           return instance(originalRequest);

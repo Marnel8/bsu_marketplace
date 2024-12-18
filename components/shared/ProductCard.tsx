@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 const ProductCard = ({ item }: { item: any }) => {
   const router = useRouter();
   return (
-    <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-lg">
+    <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-lg max-w-[350px]">
       <CardHeader className="p-0">
         <div className="relative w-full pt-[100%]">
           {" "}
