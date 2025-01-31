@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 
 const AuthPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div>
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <div className="bg-white shadow-[0_10px_25px_rgba(0,0,0,0.5)] rounded-lg w-96">
         <SignInForm />
         <Button variant="link" className=" w-full mt-2">
           <Link className="text-center flex items-center gap-2" href="/">

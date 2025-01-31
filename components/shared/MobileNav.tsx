@@ -8,7 +8,12 @@ const MobileNav = () => {
   return (
     <div className="header">
       <Link href="/">
-        <Image src="/images/logo.png" alt="logo" width={42} height={42} />
+        <Image
+          src="/images/marketplace.png"
+          alt="marketplace"
+          width={42}
+          height={42}
+        />
       </Link>
       <div>
         <div className="w-full">

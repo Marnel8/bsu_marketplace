@@ -6,21 +6,27 @@ import { Button } from "../ui/button";
 
 const ProductList = () => {
   const { data: items, isPending: isItemsLoading } = useItems();
+
   return (
     <section className="py-16 bg-gray-50 w-full">
       <div className="container mx-auto px-4">
+        {}
         <h2 className="text-3xl font-bold text-center mb-8 text-[#1a2b4b]">
           Featured Products
         </h2>
-        <div className="flex justify-center">
-          <div className="flex flex-wrap gap-4 justify-center">
+
+        {/* Scrollable Product List */}
+        <div className="relative">
+          <div className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 scrollbar-hide">
             {items?.map((item: any) => (
-              <div className="flex justify-center" key={item.id}>
+              <div key={item.id} className="snap-center flex-shrink-0 w-60">
                 <ProductCard item={item} />
               </div>
             ))}
           </div>
         </div>
+
+        {/* View All Button */}
         <div className="mt-12 text-center">
           <Button
             variant="outline"

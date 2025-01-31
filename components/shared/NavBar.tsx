@@ -34,20 +34,20 @@ const NavBar = () => {
 
   return (
     <div
-      className={`nav-bar transition-all duration-300 ease-in-out z-50 bg-white w-full ${
+      className={`nav-bar transition-all duration-300 ease-in-out z-50 bg-black w-full ${
         header
           ? "fixed top-0 left-0 shadow-sm"
-          : "transition-opacity duration-300"
+          : "transition-opacity duration-300 bg-transparent"
       }`}
     >
       <nav className="flex gap-20 items-center justify-between w-full">
         <div>
           <Link href="/">
             <Image
-              src="/images/logo.png"
+              src="/images/marketplace.png"
               alt="BatStateU Marketplace"
-              width={50}
-              height={50}
+              width={120}
+              height={120}
             />
           </Link>
         </div>

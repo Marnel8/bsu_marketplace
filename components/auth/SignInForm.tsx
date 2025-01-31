@@ -76,7 +76,12 @@ const SignInForm = () => {
       <CardHeader>
         <div className="flex items-center gap-2">
           <div>
-            <Image src="/images/logo.png" alt="logo" width={100} height={100} />
+            <Image
+              src="/images/spartan.png"
+              alt="spartan"
+              width={100}
+              height={100}
+            />
           </div>
           <div className="space-y-1">
             <CardTitle>Sign in with your Credentials</CardTitle>
@@ -90,7 +95,12 @@ const SignInForm = () => {
         <CardContent className="space-y-2">
           <div className="space-y-1">
             <Label htmlFor="email">Email</Label>
-            <Input {...register("email")} id="email" type="email" placeholder="example@email.com" />
+            <Input
+              {...register("email")}
+              id="email"
+              type="email"
+              placeholder="example@email.com"
+            />
             {errors.email && (
               <p className="text-sm text-red-500">{errors.email.message}</p>
             )}
@@ -103,7 +113,9 @@ const SignInForm = () => {
             )}
           </div>
           {errors.root && (
-            <div className="text-sm text-red-500 pt-2">{errors.root.message}</div>
+            <div className="text-sm text-red-500 pt-2">
+              {errors.root.message}
+            </div>
           )}
         </CardContent>
         <CardFooter>
@@ -113,7 +125,10 @@ const SignInForm = () => {
             </Button>
             <p className="text-center text-sm text-muted-foreground">
               Don't have an account?{" "}
-              <a href="/auth/signup" className="text-primary-400 hover:underline">
+              <a
+                href="/auth/signup"
+                className="text-primary-400 hover:underline"
+              >
                 Sign up
               </a>
             </p>

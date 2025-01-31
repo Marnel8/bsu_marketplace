@@ -10,11 +10,12 @@ export default {
   theme: {
     extend: {
       colors: {
+        maroon: "#800000",
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: {
           DEFAULT: "#AE211E",
-          "400": "#E31837"
+          "400": "#E31837",
         },
       },
       borderRadius: {
