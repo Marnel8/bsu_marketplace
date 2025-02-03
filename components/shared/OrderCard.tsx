@@ -125,7 +125,8 @@ const OrderCard = ({ order }: { order: any }) => {
 								isCancelOrderPending ||
 								order.status === OrderStatus.APPROVED ||
 								order.status === OrderStatus.CANCELLED ||
-								order.status === OrderStatus.SUCCESS
+								order.status === OrderStatus.SUCCESS ||
+								order.status === OrderStatus.TO_BE_PICKED_UP
 							}
 						>
 							Cancel Order

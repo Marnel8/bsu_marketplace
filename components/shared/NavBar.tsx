@@ -45,10 +45,10 @@ const NavBar = () => {
 				<div>
 					<Link href="/">
 						<Image
-							src="/images/logo.png"
+							src="/images/marketplace_logo.png"
 							alt="BatStateU Marketplace"
-							width={50}
-							height={50}
+							width={180}
+							height={100}
 						/>
 					</Link>
 				</div>

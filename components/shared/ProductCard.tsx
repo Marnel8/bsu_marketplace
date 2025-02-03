@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 const ProductCard = ({ item }: { item: any }) => {
 	const router = useRouter();
 	return (
-		<Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-lg max-w-[350px]">
+		<Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-lg min-w-[350px] md:min-w-[390px] w-[300px]">
 			<CardHeader className="p-0">
 				<div className="relative w-full pt-[100%]">
 					{" "}
@@ -38,13 +38,10 @@ const ProductCard = ({ item }: { item: any }) => {
 					</Badge>
 				</div>
 			</CardHeader>
-			<CardContent className="flex-1 p-4">
+			<CardContent className="flex-1 p-4 flex items-center justify-between">
 				<CardTitle className="text-lg mb-2 text-[#1a2b4b]">
 					{item.name}
 				</CardTitle>
-				<p className="text-sm text-gray-600 mb-2 line-clamp-2 h-10">
-					{item.description}
-				</p>
 				<p className="text-lg font-semibold text-[#E31837]">
 					₱{item.price.toLocaleString()}
 				</p>

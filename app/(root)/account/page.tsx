@@ -1,5 +1,6 @@
 import Account from "@/components/shared/Account";
 import ChangePassword from "@/components/shared/ChangePassword";
+import MobileCart from "@/components/shared/MobileCart";
 import Orders from "@/components/shared/Orders";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProtectedRoute from "@/hoc/ProtectedRoute";
@@ -19,11 +20,18 @@ const AccountPage = () => {
 					>
 						<TabsList className="w-full max-w-[600px] h-12 bg-white rounded-full shadow-md p-1.5">
 							<TabsTrigger
+								value="cart"
+								className=" md:hidden flex-1 h-full rounded-full text-sm font-medium transition-all data-[state=active]:bg-gray-100 data-[state=active]:text-black data-[state=active]:shadow-sm"
+							>
+								Cart
+							</TabsTrigger>
+							<TabsTrigger
 								value="orders"
 								className="flex-1 h-full rounded-full text-sm font-medium transition-all data-[state=active]:bg-gray-100 data-[state=active]:text-black data-[state=active]:shadow-sm"
 							>
 								Orders
 							</TabsTrigger>
+
 							<TabsTrigger
 								value="account"
 								className="flex-1 h-full rounded-full text-sm font-medium transition-all data-[state=active]:bg-gray-100 data-[state=active]:text-black data-[state=active]:shadow-sm"
@@ -45,6 +53,9 @@ const AccountPage = () => {
 						</TabsContent>
 						<TabsContent value="orders" className="w-full max-w-[600px]">
 							<Orders />
+						</TabsContent>
+						<TabsContent value="cart" className="w-full max-w-[600px]">
+							<MobileCart />
 						</TabsContent>
 					</Tabs>
 				</div>
