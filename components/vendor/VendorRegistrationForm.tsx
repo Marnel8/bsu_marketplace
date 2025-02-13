@@ -16,6 +16,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useRegisterVendor } from "@/hooks/useVendor";
 import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 type VendorFormData = {
 	companyName: string;
@@ -89,6 +90,8 @@ export function ComprehensiveVendorRegistrationForm({
 		}
 	};
 
+	const router = useRouter();
+
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const data = {
@@ -119,6 +122,8 @@ export function ComprehensiveVendorRegistrationForm({
 				banner: null,
 				businessDescription: "",
 			});
+
+			router.replace("http://atlas.batstate-u.edu.ph:3072/");
 		} catch (error) {
 			toast({
 				variant: "destructive",

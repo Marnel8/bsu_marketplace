@@ -1,4 +1,3 @@
-import Footer from "@/components/shared/Footer";
 import MobileNav from "@/components/shared/MobileNav";
 import NavBar from "@/components/shared/NavBar";
 import React from "react";

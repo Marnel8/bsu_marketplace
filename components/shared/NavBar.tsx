@@ -60,8 +60,8 @@ const NavBar = () => {
 					{!isUserPending && user ? (
 						<UserAvatar user={user} />
 					) : (
-						<Button variant="outline">
-							<a href="/auth">Sign in</a>
+						<Button variant="outline" asChild>
+							<Link href="/auth">Sign in</Link>
 						</Button>
 					)}
 				</div>

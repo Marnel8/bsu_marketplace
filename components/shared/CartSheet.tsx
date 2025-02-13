@@ -82,8 +82,7 @@ const CartSheet = () => {
 		} catch (error: any) {
 			toast({
 				title: "Error creating order",
-				description:
-					error.response?.data?.message || error.message || "Please try again",
+				description: error.message || "Please try again",
 				variant: "destructive",
 			});
 		}
