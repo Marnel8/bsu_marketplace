@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
-import { Input } from "../ui/input";
 import { User, Home, LogOut } from "lucide-react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -23,19 +22,19 @@ const MobileNav = () => {
 		<div className="header flex items-center justify-between p-4 bg-white">
 			<Link href="/">
 				<Image
-					src="/images/logo_without_txt.png"
+					src="/images/marketplace_logo.png"
 					alt="logo"
-					width={42}
-					height={42}
+					width={150}
+					height={150}
 				/>
 			</Link>
-			<div className="flex-grow mx-4">
+			{/* <div className="flex-grow mx-4">
 				<Input
 					type="text"
 					placeholder="Search products"
 					className="w-full border-gray-200 focus:ring-red-500 focus:border-red-500 text-sm"
 				/>
-			</div>
+			</div> */}
 			<nav>
 				<Sheet>
 					<SheetTrigger asChild>

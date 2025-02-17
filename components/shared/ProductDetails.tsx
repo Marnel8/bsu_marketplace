@@ -21,7 +21,7 @@ import {
 	useUpdateOrder,
 } from "@/hooks/useOrders";
 const ProductDetails = ({ product }: { product: any }) => {
-	const [count, setCount] = useState(1);
+	const [count, setCount] = useState(0);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [guestEmail, setGuestEmail] = useState("");
 	const [guestPhone, setGuestPhone] = useState("");
@@ -219,7 +219,7 @@ const ProductDetails = ({ product }: { product: any }) => {
 
 				<div className="flex items-center gap-2">
 					<Badge variant="outline" className="text-sm">
-						{product.quantity > 0
+						{product.quantity >= 0
 							? `${product.quantity - count} in stock`
 							: "Out of stock"}
 					</Badge>
@@ -248,7 +248,7 @@ const ProductDetails = ({ product }: { product: any }) => {
 							<Button
 								variant="ghost"
 								onClick={decrement}
-								disabled={count <= 1}
+								disabled={count <= 0}
 								className="px-3"
 							>
 								-
@@ -264,7 +264,7 @@ const ProductDetails = ({ product }: { product: any }) => {
 								variant="ghost"
 								onClick={increment}
 								className="px-3"
-								disabled={count >= product?.quantity}
+								disabled={count == product?.quantity}
 							>
 								+
 							</Button>
@@ -280,7 +280,7 @@ const ProductDetails = ({ product }: { product: any }) => {
 					<Button
 						className="w-full bg-primary-400 hover:bg-primary/80"
 						onClick={handleOrderNow}
-						disabled={count > product.quantity || isAddingToCart}
+						disabled={count > product.quantity || isAddingToCart || count == 0}
 					>
 						Order now
 					</Button>

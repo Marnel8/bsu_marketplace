@@ -47,14 +47,14 @@ const NavBar = () => {
 						<Image
 							src="/images/marketplace_logo.png"
 							alt="BatStateU Marketplace"
-							width={180}
+							width={150}
 							height={100}
 						/>
 					</Link>
 				</div>
-				<div className="flex-1 ">
+				{/* <div className="flex-1 ">
 					<Input type="text" placeholder="Search products" />
-				</div>
+				</div> */}
 				<div className="flex gap-4 items-center">
 					<CartSheet />
 					{!isUserPending && user ? (

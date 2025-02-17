@@ -67,7 +67,6 @@ const SignInForm = () => {
 			});
 			router.push("/");
 		} else if (isLoginError) {
-			console.log("Login failed:", loginError);
 			setError("root", { message: loginError.message });
 			toast({
 				title: "Login failed",
@@ -124,7 +123,7 @@ const SignInForm = () => {
 						<Button disabled={isSubmitting} type="submit" className="w-full">
 							{isSubmitting ? "Signing in..." : "Sign in"}
 						</Button>
-						<div className="flex justify-between">
+						<div className="flex justify-center items-center flex-col md:flex-row md:justify-between">
 							<p className="text-center text-sm text-muted-foreground">
 								Don't have an account?{" "}
 								<Link

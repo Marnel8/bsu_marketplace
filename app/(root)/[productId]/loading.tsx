@@ -1,10 +1,8 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import MiniLoader from "@/components/shared/MiniLoader";
 import React from "react";
 
-const SkeletonLoading = () => {
-  return (
-      <Skeleton />
-  );
+const loading = () => {
+	return <MiniLoader />;
 };
 
-export default SkeletonLoading;
+export default loading;

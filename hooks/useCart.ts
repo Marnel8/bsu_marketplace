@@ -16,6 +16,7 @@ export const useCartItems = () => {
 		queryKey: ["cartItems"],
 		queryFn: fetchCartItems,
 		staleTime: 15000,
+		retry: false,
 	});
 };
 
