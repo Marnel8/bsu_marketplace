@@ -79,11 +79,16 @@ const SignInForm = () => {
 	return (
 		<Card>
 			<CardHeader>
-				<div className="flex items-center gap-2">
+				<div className="flex flex-col items-center gap-5">
 					<div>
-						<Image src="/images/logo.png" alt="logo" width={100} height={100} />
+						<Image
+							src="/images/marketplace_logo.png"
+							alt="logo"
+							width={180}
+							height={100}
+						/>
 					</div>
-					<div className="space-y-1">
+					<div className="space-y-1 text-center">
 						<CardTitle>Sign in with your Credentials</CardTitle>
 						<CardDescription>
 							Enter your credentials correctly. Click Sign In when you're done.

@@ -11,8 +11,8 @@ const CTA = () => {
 					Ready to Get Started?
 				</h2>
 				<p className="mb-8 text-lg max-w-2xl mx-auto text-gray-700">
-					Join the BatStateU Marketplace today and start buying, selling, and
-					connecting with your university community!
+					Join the BatStateU Spartans Marketplace today and start buying,
+					selling, and connecting with your university community!
 				</p>
 				<Link href="/auth">
 					<Button

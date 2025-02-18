@@ -41,7 +41,7 @@ const NavBar = () => {
 					: "bg-transparent py-4"
 			}`}
 		>
-			<nav className="flex gap-20 items-center justify-between w-full">
+			<nav className="flex gap-20 items-center justify-between w-full max-w-[1080px] mx-auto">
 				<div>
 					<Link href="/">
 						<Image

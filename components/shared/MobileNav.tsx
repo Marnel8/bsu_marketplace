@@ -51,6 +51,7 @@ const MobileNav = () => {
 										alt="Logo"
 										width={170}
 										height={100}
+										priority
 									/>
 								</div>
 								<SheetTitle className="text-lg font-semibold text-center text-[#232323] py-1">

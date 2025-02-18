@@ -5,20 +5,27 @@ import Skeleton from "@/components/shared/Skeleton";
 import React, { Suspense } from "react";
 
 import dynamic from "next/dynamic";
+import ScrollAnimation from "@/components/layout/scroll-animation";
 
 const ProductList = dynamic(() => import("@/components/shared/ProductList"));
 
 const RootPage = () => {
 	return (
-		<div>
-			<Banner />
-			<div className="page-wrapper space-y-6" id="products">
+		<div className="font-roboto">
+			<ScrollAnimation>
+				<Banner />
+			</ScrollAnimation>
+			<section className="page-wrapper space-y-6" id="products">
 				<Suspense fallback={<Skeleton />}>
 					<ProductList />
 				</Suspense>
-			</div>
-			<CTA />
-			<Footer />
+			</section>
+			<ScrollAnimation>
+				<CTA />
+			</ScrollAnimation>
+			<ScrollAnimation>
+				<Footer />
+			</ScrollAnimation>
 		</div>
 	);
 };

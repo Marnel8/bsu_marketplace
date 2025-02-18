@@ -15,7 +15,7 @@ const Footer = () => {
 							University students to buy, sell, and exchange goods and services.
 						</p>
 					</div>
-					<div>
+					{/* <div>
 						<h3 className="text-lg font-semibold mb-4 text-red-600 text-center md:text-left">
 							Quick Links
 						</h3>
@@ -53,12 +53,12 @@ const Footer = () => {
 								</Link>
 							</li>
 						</ul>
-					</div>
+					</div> */}
 					<div className="text-center md:text-left">
 						<h3 className="text-lg font-semibold mb-4 text-red-600 ">
 							Contact Us
 						</h3>
-						<p className="text-sm">Email: support@batstateumarket.edu</p>
+						<p className="text-sm">Email: noreplysteerhub@gmail.com</p>
 						<p className="text-sm">Phone: (123) 456-7890</p>
 					</div>
 					<div className="text-center md:text-left">
